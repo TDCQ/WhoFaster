@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.whofaster.MainActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/player_a">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/player_a_buttons"
+                android:rotation="180">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="小连招+2"
+                    android:onClick="addTwoForPlayerB"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="正常+1"
+                    android:onClick="addOneForPlayerB"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="大连招+3"
+                    android:onClick="addThreeForPlayerB"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/player_a_buttons"
+                android:layout_alignParentBottom="true"
+                android:rotation="180">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="player B" />
+
+                    <TextView
+                        android:id="@+id/targetOfPlayerB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="目标分：144"/>
+
+                    <TextView
+                        android:id="@+id/currentOfPlayerB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自己分数：3"/>
+
+                    <TextView
+                        android:id="@+id/eyeOfPlayerA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="敌方分数：10"/>
+
+                    <TextView
+                        android:id="@+id/messageBoxB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/blockOfPlayerB"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:ems="6"
+                        android:text = ""
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/giveUpPlayerB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="认输"
+                        android:onClick="giveUpPlayerB"/>
+
+                    <Button
+                        android:id="@+id/startPlayerB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开始"
+                        android:onClick="startPlayerB"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Player A"/>
+
+                    <TextView
+                        android:id="@+id/targetOfPlayerA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="目标分：144"/>
+                    <TextView
+                        android:id="@+id/currentOfPlayerA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自己分数：3"/>
+                    <TextView
+                        android:id="@+id/eyeOfPlayerB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="敌方分数：10"/>
+
+                    <TextView
+                        android:id="@+id/messageBoxA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/blockOfPlayerA"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:ems="6"
+                        android:text = ""
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <Button
+                        android:id="@+id/giveUpPlayerA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="认输"
+                        android:onClick="giveUpPlayerA"/>
+
+                    <Button
+                        android:id="@+id/startPlayerA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开始"
+                        android:onClick="startPlayerA"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="小连招+2"
+                    android:onClick="addTwoForPlayerA"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="正常+1"
+                    android:onClick="addOneForPlayerA"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="大连招+3"
+                    android:onClick="addThreeForPlayerA"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
