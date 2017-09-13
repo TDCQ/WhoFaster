@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
 
@@ -32,18 +34,29 @@ public class MainActivity extends AppCompatActivity {
         displayTarget();
         displayBlockOfA();
         displayBlockOfB();
+        ToggleButton startA = (ToggleButton) findViewById(R.id.startPlayerA);
+        startA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    startPlayerActionA();
+                } else {
+                    giveUpPlayerActionA();
+                }
+            }
+        });
+
     }
 
-    public void displayTarget(){
+    public void displayTarget() {
         TextView blockOfPlayerA = (TextView) findViewById(R.id.targetOfPlayerA);
         blockOfPlayerA.setText("目标分：" + targetBlock);
         TextView blockOfPlayerB = (TextView) findViewById(R.id.targetOfPlayerB);
         blockOfPlayerB.setText("目标分：" + targetBlock);
     }
 
-    public void displayBlockOfA(){
+    public void displayBlockOfA() {
         String blocks = new String(new char[blockOfPlayerA]).replace("\0", block);
-        if (blocks.length() == targetBlock){
+        if (blocks.length() == targetBlock) {
             TextView BoxA = (TextView) findViewById(messageBoxA);
             BoxA.setText("恭喜， Player A 已经赢了");
             TextView BoxB = (TextView) findViewById(messageBoxB);
@@ -59,39 +72,50 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     public void addOneForPlayerA(View view) {
-        if (isGameEnd) { return;}
-        if (blockOfPlayerA + 1  >= targetBlock) {
+        if (isGameEnd) {
+            return;
+        }
+        if (blockOfPlayerA + 1 >= targetBlock) {
             blockOfPlayerA = targetBlock;
-        }else {
+        } else {
             blockOfPlayerA = blockOfPlayerA + 1;
         }
         displayBlockOfA();
     }
 
     public void addTwoForPlayerA(View view) {
-        if (isGameEnd) { return;}
-        if (blockOfPlayerA + 2  >= targetBlock) {
+        if (isGameEnd) {
+            return;
+        }
+        if (blockOfPlayerA + 2 >= targetBlock) {
             blockOfPlayerA = targetBlock;
-        }else {
+        } else {
             blockOfPlayerA = blockOfPlayerA + 2;
         }
         displayBlockOfA();
     }
 
     public void addThreeForPlayerA(View view) {
-        if (isGameEnd) { return;}
-        if (blockOfPlayerA + 3  >= targetBlock) {
+        if (isGameEnd) {
+            return;
+        }
+        if (blockOfPlayerA + 3 >= targetBlock) {
             blockOfPlayerA = targetBlock;
-        }else {
+        } else {
             blockOfPlayerA = blockOfPlayerA + 3;
         }
         displayBlockOfA();
     }
 
-    public void giveUpPlayerA(View view){
-        if (isStartA && isStartB ) {
-            TextView BoxB= (TextView) findViewById(messageBoxB);
+    public void giveUpPlayerA(View view) {
+        giveUpPlayerActionA();
+    }
+
+    private void giveUpPlayerActionA() {
+        if (isStartA && isStartB) {
+            TextView BoxB = (TextView) findViewById(messageBoxB);
             BoxB.setText("恭喜， Player A已经认输");
         }
         endGame();
@@ -101,9 +125,16 @@ public class MainActivity extends AppCompatActivity {
         isStartB = false;
         isStartA = false;
         isGameEnd = true;
+//        resetStartButton();
     }
 
-    public void startPlayerA(View view){
+    public void startPlayerA(View view) {
+        startPlayerActionA();
+//        ToggleButton startA = (ToggleButton) findViewById(R.id.startPlayerA);
+//        startA.setBackgroundColor(Color.DKGRAY);
+    }
+
+    private void startPlayerActionA() {
         if (isGameEnd == false) return;
         isStartA = true;
         if (isStartB == true) {
@@ -114,13 +145,11 @@ public class MainActivity extends AppCompatActivity {
             displayBlockOfB();
             cleanMessageBox();
         }
-        // Button startA = (Button) findViewById(R.id.startPlayerA);
-        // startA.setBackgroundColor(Color.RED);
     }
 
-    public void displayBlockOfB(){
+    public void displayBlockOfB() {
         String blocks = new String(new char[blockOfPlayerB]).replace("\0", block);
-        if (blocks.length() == targetBlock){
+        if (blocks.length() == targetBlock) {
             TextView BoxB = (TextView) findViewById(messageBoxB);
             BoxB.setText("恭喜， Player B 已经赢了");
             TextView BoxA = (TextView) findViewById(messageBoxA);
@@ -136,45 +165,52 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     public void addOneForPlayerB(View view) {
-        if (isGameEnd) { return;}
-        if (blockOfPlayerB + 1  >= targetBlock) {
+        if (isGameEnd) {
+            return;
+        }
+        if (blockOfPlayerB + 1 >= targetBlock) {
             blockOfPlayerB = targetBlock;
-        }else {
+        } else {
             blockOfPlayerB = blockOfPlayerB + 1;
         }
         displayBlockOfB();
     }
 
     public void addTwoForPlayerB(View view) {
-        if (isGameEnd) { return;}
-        if (blockOfPlayerB + 2  >= targetBlock) {
+        if (isGameEnd) {
+            return;
+        }
+        if (blockOfPlayerB + 2 >= targetBlock) {
             blockOfPlayerB = targetBlock;
-        }else {
+        } else {
             blockOfPlayerB = blockOfPlayerB + 2;
         }
         displayBlockOfB();
     }
 
     public void addThreeForPlayerB(View view) {
-        if (isGameEnd) { return;}
-        if (blockOfPlayerB + 3  >= targetBlock) {
+        if (isGameEnd) {
+            return;
+        }
+        if (blockOfPlayerB + 3 >= targetBlock) {
             blockOfPlayerB = targetBlock;
-        }else {
+        } else {
             blockOfPlayerB = blockOfPlayerB + 3;
         }
         displayBlockOfB();
     }
 
-    public void giveUpPlayerB(View view){
-        if (isStartA && isStartB ) {
+    public void giveUpPlayerB(View view) {
+        if (isStartA && isStartB) {
             TextView BoxA = (TextView) findViewById(messageBoxA);
             BoxA.setText("恭喜， Player B已经认输");
         }
         endGame();
     }
 
-    public void startPlayerB(View view){
+    public void startPlayerB(View view) {
         if (isGameEnd == false) return;
         isStartB = true;
         if (isStartA == true) {
@@ -185,12 +221,21 @@ public class MainActivity extends AppCompatActivity {
             displayBlockOfB();
             cleanMessageBox();
         }
+//        Button startB = (Button) findViewById(R.id.startPlayerB);
+//        startB.setBackgroundColor(Color.DKGRAY);
     }
 
     private void cleanMessageBox() {
-        TextView BoxB= (TextView) findViewById(messageBoxB);
+        TextView BoxB = (TextView) findViewById(messageBoxB);
         BoxB.setText("");
-        TextView BoxA= (TextView) findViewById(messageBoxA);
+        TextView BoxA = (TextView) findViewById(messageBoxA);
         BoxA.setText("");
+    }
+
+    private void resetStartButton() {
+        Button startA = (Button) findViewById(R.id.startPlayerA);
+        startA.setBackgroundColor(Color.argb(255, 255, 187, 51));
+        Button startB = (Button) findViewById(R.id.startPlayerB);
+        startB.setBackgroundColor(Color.argb(255, 255, 187, 51));
     }
 }
