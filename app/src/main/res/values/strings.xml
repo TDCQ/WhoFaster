@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Who Faster</string>
+    <string name="begin">放马过来</string>
+    <string name="end">甘拜下风</string>
+    <string name="medium_plus">小连招+2</string>
+    <string name="normal_plus">正常+1</string>
+    <string name="large_plus">大连招+3</string>
+    <string name="name_of_player_a">Player A</string>
+    <string name="game_target">目标分：144</string>
+    <string name="current_score">自己分数：3</string>
+    <string name="current_other">敌方分数：10</string>
 </resources>

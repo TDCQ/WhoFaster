@@ -1,5 +1,6 @@
 package com.example.android.whofaster;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,17 +35,30 @@ public class MainActivity extends AppCompatActivity {
         displayTarget();
         displayBlockOfA();
         displayBlockOfB();
-        ToggleButton startA = (ToggleButton) findViewById(R.id.startPlayerA);
+        final ToggleButton startA = (ToggleButton) findViewById(R.id.startPlayerA);
+        final ToggleButton startB = (ToggleButton) findViewById(R.id.startPlayerB);
+
         startA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     startPlayerActionA();
                 } else {
                     giveUpPlayerActionA();
+                    startB.setChecked(false);
                 }
             }
         });
 
+        startB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    startPlayerActionB();
+                } else {
+                    giveUpPlayerActionB();
+                    startA.setChecked(false);
+                }
+            }
+        });
     }
 
     public void displayTarget() {
@@ -203,6 +217,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void giveUpPlayerB(View view) {
+        giveUpPlayerActionB();
+    }
+
+    private void giveUpPlayerActionB() {
         if (isStartA && isStartB) {
             TextView BoxA = (TextView) findViewById(messageBoxA);
             BoxA.setText("恭喜， Player B已经认输");
@@ -211,6 +229,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startPlayerB(View view) {
+        startPlayerActionB();
+    }
+
+    private void startPlayerActionB() {
         if (isGameEnd == false) return;
         isStartB = true;
         if (isStartA == true) {
@@ -221,8 +243,6 @@ public class MainActivity extends AppCompatActivity {
             displayBlockOfB();
             cleanMessageBox();
         }
-//        Button startB = (Button) findViewById(R.id.startPlayerB);
-//        startB.setBackgroundColor(Color.DKGRAY);
     }
 
     private void cleanMessageBox() {
@@ -237,5 +257,15 @@ public class MainActivity extends AppCompatActivity {
         startA.setBackgroundColor(Color.argb(255, 255, 187, 51));
         Button startB = (Button) findViewById(R.id.startPlayerB);
         startB.setBackgroundColor(Color.argb(255, 255, 187, 51));
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            //横向
+            setContentView(R.layout.activity_main_landscape);
+        } else {
+            //竖向
+            setContentView(R.layout.activity_main);
+        }
     }
 }
